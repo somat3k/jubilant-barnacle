@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jubilant-barnacle"
+version = "0.1.0"
+description = "AI-powered algorithmic trading package with Groq, Gemini, Ollama, ONNX, backtesting, MQL5, and cTrader support"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+keywords = ["algotrading", "ai", "backtesting", "groq", "gemini", "ollama", "onnx", "mql5", "ctrader"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Office/Business :: Financial :: Investment",
+]
+dependencies = [
+    "groq>=0.9.0",
+    "google-genai>=1.0.0",
+    "ollama>=0.2.1",
+    "backtesting>=0.3.3",
+    "scikit-learn>=1.4.0",
+    "pandas>=2.1.0",
+    "numpy>=1.26.0",
+    "onnxruntime>=1.18.0",
+    "yfinance>=0.2.40",
+    "requests>=2.31.0",
+    "python-dotenv>=1.0.0",
+    "ta>=0.11.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+]
+
+[project.scripts]
+algo-trade = "algo:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["backtesting*", "python_inference*", "onnx_models*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
